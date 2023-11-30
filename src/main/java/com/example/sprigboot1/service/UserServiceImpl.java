@@ -2,14 +2,14 @@ package com.example.sprigboot1.service;
 
 import com.example.sprigboot1.dao.UserDAO;
 import com.example.sprigboot1.model.User;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;

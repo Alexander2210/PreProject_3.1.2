@@ -2,7 +2,6 @@ package com.example.sprigboot1.controller;
 
 import com.example.sprigboot1.model.User;
 import com.example.sprigboot1.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "/new";
+    public String create(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/";
     }
@@ -48,9 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "/edit";
+    public String update(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/";
     }
